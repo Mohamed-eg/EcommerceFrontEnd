@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { ServerURL } from "consts";
 const initialState = {
   isLoading: false,
   productList: [],
@@ -18,7 +19,7 @@ export const fetchAllFilteredProducts = createAsyncThunk(
     });
 
     const result = await axios.get(
-      `https://ecommerce-back-end-flame.vercel.app/api/shop/products/get?${query}`
+      `${ServerURL}/api/shop/products/get?${query}`
     );
 
     console.log(result);
@@ -31,7 +32,7 @@ export const fetchProductDetails = createAsyncThunk(
   "/products/fetchProductDetails",
   async (id) => {
     const result = await axios.get(
-      `https://ecommerce-back-end-flame.vercel.app/api/shop/products/get/${id}`
+      `${ServerURL}/api/shop/products/get/${id}`
     );
 
     return result?.data;

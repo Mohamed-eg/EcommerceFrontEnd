@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { ServerURL } from "consts";
 const initialState = {
   isAuthenticated: false,
   isLoading: true,
@@ -12,7 +13,7 @@ export const registerUser = createAsyncThunk(
 
   async (formData) => {
     const response = await axios.post(
-      "https://ecommerce-back-end-flame.vercel.app/api/auth/register",
+      `${ServerURL}/api/auth/register`,
       formData,
       {
         withCredentials: true,
@@ -28,7 +29,7 @@ export const loginUser = createAsyncThunk(
 
   async (formData) => {
     const response = await axios.post(
-      "https://ecommerce-back-end-flame.vercel.app/api/auth/login",
+      `${ServerURL}/api/auth/login`,
       formData,
       {
         withCredentials: true,
@@ -44,7 +45,7 @@ export const logoutUser = createAsyncThunk(
 
   async () => {
     const response = await axios.post(
-      "https://ecommerce-back-end-flame.vercel.app/api/auth/logout",
+      `${ServerURL}/api/auth/logout`,
       {},
       {
         withCredentials: true,
@@ -60,7 +61,7 @@ export const checkAuth = createAsyncThunk(
 
   async () => {
     const response = await axios.get(
-      "https://ecommerce-back-end-flame.vercel.app/api/auth/check-auth",
+      `${ServerURL}/api/auth/check-auth`,
       {
         withCredentials: true,
         headers: {

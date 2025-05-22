@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { ServerURL } from "consts";
 const initialState = {
   isLoading: false,
   productList: [],
@@ -10,7 +10,7 @@ export const addNewProduct = createAsyncThunk(
   "/products/addnewproduct",
   async (formData) => {
     const result = await axios.post(
-      "https://ecommerce-back-end-flame.vercel.app/api/admin/products/add",
+      `${ServerURL}/api/admin/products/add`,
       formData,
       {
         headers: {
@@ -27,7 +27,7 @@ export const fetchAllProducts = createAsyncThunk(
   "/products/fetchAllProducts",
   async () => {
     const result = await axios.get(
-      "https://ecommerce-back-end-flame.vercel.app/api/admin/products/get"
+      `${ServerURL}/api/admin/products/get`
     );
 
     return result?.data;
@@ -38,7 +38,7 @@ export const editProduct = createAsyncThunk(
   "/products/editProduct",
   async ({ id, formData }) => {
     const result = await axios.put(
-      `https://ecommerce-back-end-flame.vercel.app/api/admin/products/edit/${id}`,
+      `${ServerURL}/api/admin/products/edit/${id}`,
       formData,
       {
         headers: {
@@ -55,7 +55,7 @@ export const deleteProduct = createAsyncThunk(
   "/products/deleteProduct",
   async (id) => {
     const result = await axios.delete(
-      `https://ecommerce-back-end-flame.vercel.app/api/admin/products/delete/${id}`
+      `${ServerURL}/api/admin/products/delete/${id}`
     );
 
     return result?.data;
@@ -75,6 +75,7 @@ const AdminProductsSlice = createSlice({
         state.isLoading = false;
         state.productList = action.payload.data;
       })
+      // eslint-disable-next-line no-unused-vars
       .addCase(fetchAllProducts.rejected, (state, action) => {
         state.isLoading = false;
         state.productList = [];

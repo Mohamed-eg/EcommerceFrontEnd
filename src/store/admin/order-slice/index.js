@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { ServerURL } from "consts";
 const initialState = {
   orderList: [],
   orderDetails: null,
@@ -10,7 +10,7 @@ export const getAllOrdersForAdmin = createAsyncThunk(
   "/order/getAllOrdersForAdmin",
   async () => {
     const response = await axios.get(
-      `https://ecommerce-back-end-flame.vercel.app/api/admin/orders/get`
+      `${ServerURL}/api/admin/orders/get`
     );
 
     return response.data;
@@ -21,7 +21,7 @@ export const getOrderDetailsForAdmin = createAsyncThunk(
   "/order/getOrderDetailsForAdmin",
   async (id) => {
     const response = await axios.get(
-      `https://ecommerce-back-end-flame.vercel.app/api/admin/orders/details/${id}`
+      `${ServerURL}/api/admin/orders/details/${id}`
     );
 
     return response.data;
@@ -32,7 +32,7 @@ export const updateOrderStatus = createAsyncThunk(
   "/order/updateOrderStatus",
   async ({ id, orderStatus }) => {
     const response = await axios.put(
-      `https://ecommerce-back-end-flame.vercel.app/api/admin/orders/update/${id}`,
+      `${ServerURL}/api/admin/orders/update/${id}`,
       {
         orderStatus,
       }

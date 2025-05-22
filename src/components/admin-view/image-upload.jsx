@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FileIcon, UploadCloudIcon, XIcon } from "lucide-react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -5,6 +6,7 @@ import { useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import axios from "axios";
 import { Skeleton } from "../ui/skeleton";
+import { ServerURL,localURL } from "consts";
 
 function ProductImageUpload({
   imageFile,
@@ -50,7 +52,7 @@ function ProductImageUpload({
     const data = new FormData();
     data.append("my_file", imageFile);
     const response = await axios.post(
-      "https://ecommerce-back-end-flame.vercel.app/api/admin/products/upload-image",
+      `${ServerURL}/api/admin/products/upload-image`,
       data
     );
     console.log(response, "response");

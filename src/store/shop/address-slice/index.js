@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { ServerURL } from "consts";
 const initialState = {
   isLoading: false,
   addressList: [],
@@ -10,7 +11,7 @@ export const addNewAddress = createAsyncThunk(
   "/addresses/addNewAddress",
   async (formData) => {
     const response = await axios.post(
-      "https://ecommerce-back-end-flame.vercel.app/api/shop/address/add",
+      `${ServerURL}/api/shop/address/add`,
       formData
     );
 
@@ -22,7 +23,7 @@ export const fetchAllAddresses = createAsyncThunk(
   "/addresses/fetchAllAddresses",
   async (userId) => {
     const response = await axios.get(
-      `https://ecommerce-back-end-flame.vercel.app/api/shop/address/get/${userId}`
+      `${ServerURL}/api/shop/address/get/${userId}`
     );
 
     return response.data;
@@ -33,7 +34,7 @@ export const editaAddress = createAsyncThunk(
   "/addresses/editaAddress",
   async ({ userId, addressId, formData }) => {
     const response = await axios.put(
-      `https://ecommerce-back-end-flame.vercel.app/api/shop/address/update/${userId}/${addressId}`,
+      `${ServerURL}/api/shop/address/update/${userId}/${addressId}`,
       formData
     );
 
@@ -45,7 +46,7 @@ export const deleteAddress = createAsyncThunk(
   "/addresses/deleteAddress",
   async ({ userId, addressId }) => {
     const response = await axios.delete(
-      `https://ecommerce-back-end-flame.vercel.app/api/shop/address/delete/${userId}/${addressId}`
+      `${ServerURL}/api/shop/address/delete/${userId}/${addressId}`
     );
 
     return response.data;

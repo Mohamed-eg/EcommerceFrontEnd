@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { ServerURL } from "consts";
 const initialState = {
   isLoading: false,
   searchResults: [],
@@ -10,7 +10,7 @@ export const getSearchResults = createAsyncThunk(
   "/order/getSearchResults",
   async (keyword) => {
     const response = await axios.get(
-      `https://ecommerce-back-end-flame.vercel.app/api/shop/search/${keyword}`
+      `${ServerURL}/api/shop/search/${keyword}`
     );
 
     return response.data;
