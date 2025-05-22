@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import axios from "axios";
 import { Skeleton } from "../ui/skeleton";
-import { ServerURL,localURL } from "consts";
+import { ServerURL,localURL } from "@/consts";
 
 function ProductImageUpload({
   imageFile,

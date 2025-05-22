@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { ServerURL } from "consts";
+import { ServerURL } from "@/consts";
 const initialState = {
   isLoading: false,
   productList: [],
